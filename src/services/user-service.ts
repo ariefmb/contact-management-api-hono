@@ -1,13 +1,13 @@
 import { HTTPException } from 'hono/http-exception'
-import { UserRegisterRequest, UserResponse } from '../models/user-model'
+import { UserLoginRequest, UserLoginResponse, UserRegisterRequest, UserResponse } from '../models/user-model'
 import { UserRepository } from '../repositories/user-repository'
-import { hashing } from '../utils/hashing'
+import { hashing, verifyHashing } from '../utils/hashing'
+import { signJWT } from '../utils/jwt'
 import { UserValidation } from '../validations/user-validation'
 
 export class UserService {
   static register = async (request: UserRegisterRequest): Promise<UserResponse> => {
-    request.id = Bun.randomUUIDv7()
-    console.info('id', request.id)
+    request.id = crypto.randomUUID()
 
     request = UserValidation.REGISTER.parse(request) as UserRegisterRequest
 
@@ -29,5 +29,52 @@ export class UserService {
     }
 
     return await UserRepository.register(payload)
+  }
+
+  static login = async (request: UserLoginRequest): Promise<UserLoginResponse> => {
+    request = UserValidation.LOGIN.parse(request) as UserLoginRequest
+
+    const user = await UserRepository.findUniqueByUsername(request.username)
+
+    if (!user) {
+      throw new HTTPException(404, {
+        message: 'Username or Password is incorrect',
+      })
+    }
+
+    const isPassVerified = verifyHashing(request.password, user.password)
+
+    if (!isPassVerified) {
+      throw new HTTPException(404, {
+        message: 'Username or Password is incorrect',
+      })
+    }
+
+    const now = Math.floor(Date.now() / 1000)
+
+    const accessPayload = {
+      sub: user.id,
+      iat: now,
+      exp: now + 60 * 60 * 24,
+    }
+
+    const refreshPayload = {
+      sub: user.id,
+      iat: now,
+      exp: now + 60 * 60 * 24 * 15,
+    }
+
+    const accessToken = await signJWT(accessPayload)
+    const refreshToken = await signJWT(refreshPayload)
+
+    return {
+      user: {
+        id: user.id,
+        username: user.username,
+        name: user.name,
+      },
+      accessToken,
+      refreshToken,
+    }
   }
 }

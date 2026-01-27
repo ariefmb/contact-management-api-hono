@@ -1,4 +1,4 @@
-import { UserRegisterRequest, UserResponse } from '../models/user-model'
+import { UserInterface, UserRegisterRequest, UserResponse } from '../models/user-model'
 import prismaClient from '../utils/database'
 
 export class UserRepository {
@@ -13,10 +13,18 @@ export class UserRepository {
     })
   }
 
-  static findUniqueByUsername = async (username: string): Promise<UserResponse | null> => {
+  static findUniqueByUsername = async (username: string): Promise<UserInterface | null> => {
     return await prismaClient.users.findUnique({
       where: {
         username: username,
+      },
+    })
+  }
+
+  static findUniqueById = async (id: string): Promise<UserInterface | null> => {
+    return await prismaClient.users.findUnique({
+      where: {
+        id: id,
       },
     })
   }
