@@ -7,18 +7,10 @@ import { UserRepository } from '../repositories/user-repository'
 import { verifyJWT } from '../utils/jwt'
 import { logger } from '../utils/logger'
 
-// export const authMiddleware = new Hono<{ Variables: ApplicationVariables }>()
-
 const authMiddleware = createMiddleware<{ Variables: ApplicationVariables }>(async (c, next) => {
   const token = c.req.header('Authorization')?.replace(/^Bearer\s/, '')
 
-  console.log('authMid token:', token)
-
   const { valid, expired, decoded } = (await verifyJWT(token!)) as JWTVerifyVariables
-
-  console.log('valid', valid)
-  console.log('expired', expired)
-  console.log('decoded', decoded)
 
   if (!valid) {
     logger.error(`token = ${expired ? 'Token expired' : 'Invalid token'}`)

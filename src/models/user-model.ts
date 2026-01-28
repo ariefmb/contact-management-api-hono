@@ -10,7 +10,17 @@ export type UserLoginRequest = {
   password: string
 }
 
-export type UserLoginResponse = {
+export type RefreshSessionRequest = {
+  refreshToken: string
+}
+
+export type UserUpdateRequest = {
+  username?: string
+  password?: string
+  name?: string
+}
+
+export type UserTokenResponse = {
   user: UserResponse
   accessToken: string
   refreshToken: string

@@ -1,4 +1,4 @@
-import { UserInterface, UserRegisterRequest, UserResponse } from '../models/user-model'
+import { UserInterface, UserRegisterRequest, UserResponse, UserUpdateRequest } from '../models/user-model'
 import prismaClient from '../utils/database'
 
 export class UserRepository {
@@ -21,10 +21,10 @@ export class UserRepository {
     })
   }
 
-  static findUniqueById = async (id: string): Promise<UserInterface | null> => {
+  static findUniqueById = async (userId: string): Promise<UserInterface | null> => {
     return await prismaClient.users.findUnique({
       where: {
-        id: id,
+        id: userId,
       },
     })
   }
@@ -34,6 +34,41 @@ export class UserRepository {
       where: {
         username: username,
       },
+      select: {
+        id: true,
+        username: true,
+        name: true,
+      },
+    })
+  }
+
+  static updateTokenVersion = async (userId: string) => {
+    return await prismaClient.users.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        tokenVersion: {
+          increment: 1,
+        },
+      },
+    })
+  }
+
+  static count = async (userId: string) => {
+    return await prismaClient.users.count({
+      where: {
+        id: userId,
+      },
+    })
+  }
+
+  static update = async (userId: string, payload: UserUpdateRequest) => {
+    return await prismaClient.users.update({
+      where: {
+        id: userId,
+      },
+      data: payload,
       select: {
         id: true,
         username: true,
