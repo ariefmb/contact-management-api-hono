@@ -31,8 +31,6 @@ userController.post('/login', async (c) => {
     status: true,
     statusCode: 200,
     message: 'Success login user',
-    accessToken: result.accessToken,
-    refreshToken: result.refreshToken,
     data: result,
   })
 })

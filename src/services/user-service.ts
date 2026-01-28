@@ -50,18 +50,18 @@ export class UserService {
       })
     }
 
-    const now = Math.floor(Date.now() / 1000)
-
     const accessPayload = {
       sub: user.id,
-      iat: now,
-      exp: now + 60 * 60 * 24,
+      tokenVersion: user.tokenVersion,
+      type: 'access',
+      exp: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hour
     }
 
     const refreshPayload = {
       sub: user.id,
-      iat: now,
-      exp: now + 60 * 60 * 24 * 15,
+      tokenVersion: user.tokenVersion,
+      type: 'refresh',
+      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7, // 7 days
     }
 
     const accessToken = await signJWT(accessPayload)
