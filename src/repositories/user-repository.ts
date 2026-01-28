@@ -28,4 +28,17 @@ export class UserRepository {
       },
     })
   }
+
+  static findFirstByUsername = async (username: string): Promise<UserResponse | null> => {
+    return await prismaClient.users.findFirst({
+      where: {
+        username: username,
+      },
+      select: {
+        id: true,
+        username: true,
+        name: true,
+      },
+    })
+  }
 }

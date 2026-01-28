@@ -8,7 +8,7 @@ export const signJWT = async (payload: Record<string, unknown>): Promise<string>
 
 export const verifyJWT = async (token: string): Promise<Record<string, unknown> | null> => {
   try {
-    const decoded = verify(token, secret!, 'HS256')
+    const decoded = await verify(token, secret!, 'HS256')
     return {
       valid: true,
       expired: false,

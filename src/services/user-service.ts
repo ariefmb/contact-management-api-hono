@@ -77,4 +77,16 @@ export class UserService {
       refreshToken,
     }
   }
+
+  static getUser = async (username: string): Promise<UserResponse> => {
+    const user = await UserRepository.findFirstByUsername(username)
+
+    if (!user) {
+      throw new HTTPException(404, {
+        message: 'Username is not found',
+      })
+    }
+
+    return user
+  }
 }
