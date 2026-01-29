@@ -19,6 +19,8 @@ export const userController = new Hono<{ Variables: ApplicationVariables }>().ba
 
 userController.post('/', sValidator('json', UserValidation.REGISTER), async (c) => {
   const request = c.req.valid('json') as UserRegisterRequest
+  request.id = crypto.randomUUID()
+
   const result = await UserService.register(request)
 
   logger.info('users - register = Success register new user')
