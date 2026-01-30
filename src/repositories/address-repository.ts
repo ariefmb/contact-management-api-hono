@@ -3,7 +3,7 @@ import prismaClient from '../utils/database.js'
 
 export class AddressRepository {
   static create = async (payload: AddressCreateRequest): Promise<AddressResponse> => {
-    return await prismaClient.addresses.create({
+    return await prismaClient.address.create({
       data: payload,
       select: {
         id: true,
@@ -18,7 +18,7 @@ export class AddressRepository {
   }
 
   static get = async (addressId: string, contactId: string): Promise<AddressResponse | null> => {
-    return await prismaClient.addresses.findFirst({
+    return await prismaClient.address.findFirst({
       where: {
         contact_id: contactId,
         id: addressId,
@@ -36,7 +36,7 @@ export class AddressRepository {
   }
 
   static getList = async (contactId: string): Promise<AddressResponse[] | null> => {
-    return await prismaClient.addresses.findMany({
+    return await prismaClient.address.findMany({
       where: {
         contact_id: contactId,
       },
@@ -53,7 +53,7 @@ export class AddressRepository {
   }
 
   static count = async (contactId: string, addressId: string): Promise<number> => {
-    return await prismaClient.addresses.count({
+    return await prismaClient.address.count({
       where: {
         contact_id: contactId,
         id: addressId,
@@ -62,7 +62,7 @@ export class AddressRepository {
   }
 
   static update = async (addressId: string, payload: AddressCreateRequest): Promise<AddressResponse> => {
-    return await prismaClient.addresses.update({
+    return await prismaClient.address.update({
       where: {
         id: addressId,
       },
@@ -80,7 +80,7 @@ export class AddressRepository {
   }
 
   static delete = async (addressId: string) => {
-    return await prismaClient.addresses.delete({
+    return await prismaClient.address.delete({
       where: {
         id: addressId,
       },

@@ -3,7 +3,7 @@ import prismaClient from '../utils/database.js'
 
 export class ContactRepository {
   static create = async (payload: ContactAddRequest): Promise<ContactResponse> => {
-    return await prismaClient.contacts.create({
+    return await prismaClient.contact.create({
       data: payload,
       select: {
         id: true,
@@ -16,7 +16,7 @@ export class ContactRepository {
   }
 
   static get = async (userId: string, contactId: string): Promise<ContactResponse | null> => {
-    return await prismaClient.contacts.findFirst({
+    return await prismaClient.contact.findFirst({
       where: {
         user_id: userId,
         id: contactId,
@@ -32,7 +32,7 @@ export class ContactRepository {
   }
 
   static count = async (userId: string, contactId: string): Promise<number> => {
-    return await prismaClient.contacts.count({
+    return await prismaClient.contact.count({
       where: {
         user_id: userId,
         id: contactId,
@@ -45,7 +45,7 @@ export class ContactRepository {
     contactId: string,
     payload: ContactUpdateRequest,
   ): Promise<ContactResponse> => {
-    return await prismaClient.contacts.update({
+    return await prismaClient.contact.update({
       where: {
         user_id: userId,
         id: contactId,
@@ -62,7 +62,7 @@ export class ContactRepository {
   }
 
   static delete = async (userId: string, contactId: string) => {
-    return await prismaClient.contacts.delete({
+    return await prismaClient.contact.delete({
       where: {
         user_id: userId,
         id: contactId,
@@ -71,7 +71,7 @@ export class ContactRepository {
   }
 
   static findMany = async (filters: Array<Record<string, unknown>>, size: number, skip: number) => {
-    return await prismaClient.contacts.findMany({
+    return await prismaClient.contact.findMany({
       where: {
         AND: filters,
       },
@@ -81,7 +81,7 @@ export class ContactRepository {
   }
 
   static countFilters = async (filters: Array<Record<string, unknown>>) => {
-    return await prismaClient.contacts.count({
+    return await prismaClient.contact.count({
       where: {
         AND: filters,
       },

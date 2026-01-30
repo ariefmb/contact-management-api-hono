@@ -3,7 +3,7 @@ import prismaClient from '../utils/database.js'
 
 export class UserRepository {
   static register = async (payload: UserRegisterRequest): Promise<UserResponse> => {
-    return await prismaClient.users.create({
+    return await prismaClient.user.create({
       data: payload,
       select: {
         id: true,
@@ -14,7 +14,7 @@ export class UserRepository {
   }
 
   static findUniqueByUsername = async (username: string): Promise<UserInterface | null> => {
-    return await prismaClient.users.findUnique({
+    return await prismaClient.user.findUnique({
       where: {
         username: username,
       },
@@ -22,7 +22,7 @@ export class UserRepository {
   }
 
   static findUniqueById = async (userId: string): Promise<UserInterface | null> => {
-    return await prismaClient.users.findUnique({
+    return await prismaClient.user.findUnique({
       where: {
         id: userId,
       },
@@ -30,7 +30,7 @@ export class UserRepository {
   }
 
   static findFirstByUsername = async (username: string): Promise<UserResponse | null> => {
-    return await prismaClient.users.findFirst({
+    return await prismaClient.user.findFirst({
       where: {
         username: username,
       },
@@ -43,7 +43,7 @@ export class UserRepository {
   }
 
   static updateTokenVersion = async (userId: string) => {
-    return await prismaClient.users.update({
+    return await prismaClient.user.update({
       where: {
         id: userId,
       },
@@ -56,7 +56,7 @@ export class UserRepository {
   }
 
   static count = async (userId: string) => {
-    return await prismaClient.users.count({
+    return await prismaClient.user.count({
       where: {
         id: userId,
       },
@@ -64,7 +64,7 @@ export class UserRepository {
   }
 
   static update = async (userId: string, payload: UserUpdateRequest) => {
-    return await prismaClient.users.update({
+    return await prismaClient.user.update({
       where: {
         id: userId,
       },

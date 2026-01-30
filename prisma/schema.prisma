@@ -12,31 +12,31 @@ datasource db {
   provider = "mysql"
 }
 
-model Users {
+model User {
   id String @id @db.VarChar(100)
   username String @db.VarChar(100) @unique
   password String @db.VarChar(100)
   name String @db.VarChar(100)
   tokenVersion Int @default(0)
-  contacts Contacts[]
+  contacts Contact[]
   
   @@map("users")
 }
 
-model Contacts {
+model Contact {
   id String @id @db.VarChar(100)
   first_name String @db.VarChar(100)
   last_name String? @db.VarChar(100)
   email String? @db.VarChar(200)
   phone String? @db.VarChar(20)
   user_id String
-  users Users @relation(fields: [user_id], references: [id])
-  addresses Addresses[]
+  users User @relation(fields: [user_id], references: [id])
+  addresses Address[]
 
   @@map("contacts")
 }
 
-model Addresses {
+model Address {
   id String @id @db.VarChar(100)
   title String @db.VarChar(100)
   street String? @db.VarChar(255)
@@ -45,7 +45,7 @@ model Addresses {
   country String @db.VarChar(100)
   postal_code String @db.VarChar(10)
   contact_id String
-  contacts Contacts @relation(fields: [contact_id], references: [id])
+  contacts Contact @relation(fields: [contact_id], references: [id])
 
   @@map("addresses")
 }
