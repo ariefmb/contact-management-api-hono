@@ -1,10 +1,10 @@
-export const hashing = (password: string): string => {
-  return Bun.password.hashSync(password, {
+export const hashing = async (password: string): Promise<string> => {
+  return await Bun.password.hash(password, {
     algorithm: 'bcrypt',
     cost: 10,
   })
 }
 
-export const verifyHashing = (password: string, hash: string): boolean => {
-  return Bun.password.verifySync(password, hash)
+export const verifyHashing = async (password: string, hash: string): Promise<boolean> => {
+  return await Bun.password.verify(password, hash)
 }

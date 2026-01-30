@@ -23,7 +23,7 @@ export class UserService {
       })
     }
 
-    const hashedPassword = hashing(request.password)
+    const hashedPassword = await hashing(request.password)
 
     const payload = {
       id: request.id,
@@ -45,7 +45,7 @@ export class UserService {
       })
     }
 
-    const isPassVerified = verifyHashing(request.password, user.password)
+    const isPassVerified = await verifyHashing(request.password, user.password)
 
     if (!isPassVerified) {
       logger.error('users - login = Username or Password is incorrect')
@@ -161,7 +161,7 @@ export class UserService {
     const payload: UserUpdateRequest = {}
 
     if (request.username) payload.username = request.username
-    if (request.password) payload.password = request.password
+    if (request.password) payload.password = await hashing(request.password)
     if (request.name) payload.name = request.name
 
     return await UserRepository.update(userId, payload)
