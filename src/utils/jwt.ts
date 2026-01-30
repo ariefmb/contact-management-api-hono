@@ -1,5 +1,5 @@
 import { sign, verify } from 'hono/jwt'
-import CONFIG from '../config/environment'
+import CONFIG from '../config/environment.js'
 
 const secret = CONFIG.jwt_secret_key
 
