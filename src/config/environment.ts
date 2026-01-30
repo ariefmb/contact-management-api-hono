@@ -2,13 +2,13 @@ import 'dotenv/config'
 import { logger } from '../utils/logger.js'
 
 const CONFIG = {
-  db_url: process.env.DATABASE_URL,
-  db_port: process.env.DATABASE_PORT,
-  db_host: process.env.DATABASE_HOST,
-  db_user: process.env.DATABASE_USER,
-  db_pass: process.env.DATABASE_PASSWORD,
-  db_name: process.env.DATABASE_NAME,
-  jwt_secret_key: process.env.JWT_SECRET_KEY,
+  db_url: Bun.env.DATABASE_URL,
+  db_port: Bun.env.DATABASE_PORT,
+  db_host: Bun.env.DATABASE_HOST,
+  db_user: Bun.env.DATABASE_USER,
+  db_pass: Bun.env.DATABASE_PASSWORD,
+  db_name: Bun.env.DATABASE_NAME,
+  jwt_secret_key: Bun.env.JWT_SECRET_KEY,
 }
 
 if (!CONFIG.db_url) {
