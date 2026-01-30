@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { cors } from 'hono/cors'
 import { HTTPException } from 'hono/http-exception'
 import { ZodError } from 'zod'
 import { addressController } from './controllers/address-controller'
@@ -8,8 +9,17 @@ import { userController } from './controllers/user-controller'
 
 const app = new Hono()
 
+const allowedOrigins = ['http://localhost:5173', 'https://contact-management-ariefmb.vercel.app']
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  }),
+)
+
 app.get('/', (c) => {
-  return c.text('Hello Hono!')
+  return c.text('Contact Management API - created using Bun & Hono!')
 })
 
 app.route('/', userController)
