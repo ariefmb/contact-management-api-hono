@@ -1,6 +1,7 @@
 import { sign, verify } from 'hono/jwt'
+import CONFIG from '../config/environment'
 
-const secret = Bun.env.JWT_SECRET_KEY
+const secret = CONFIG.jwt_secret_key
 
 export const signJWT = async (payload: Record<string, unknown>): Promise<string> => {
   return await sign(payload, secret!, 'HS256')
