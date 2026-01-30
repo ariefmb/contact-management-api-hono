@@ -55,6 +55,7 @@ export class AddressRepository {
   static count = async (contactId: string, addressId: string): Promise<number> => {
     return await prismaClient.addresses.count({
       where: {
+        contact_id: contactId,
         id: addressId,
       },
     })
