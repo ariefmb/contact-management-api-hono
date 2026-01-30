@@ -23,8 +23,9 @@ guestController.get('/', async (c) => {
   return c.json({
     status: true,
     statusCode: 200,
-    message: 'Success get all contacts data',
-    data: result,
+    message: 'Success get all contacts data (guest)',
+    data: result.data,
+    paging: result.paging,
   })
 })
 
@@ -41,7 +42,7 @@ guestController.get('/:contactId', async (c) => {
   return c.json({
     status: true,
     statusCode: 200,
-    message: 'Success get contact detail data',
+    message: 'Success get contact detail data (guest)',
     data: result,
   })
 })
@@ -59,7 +60,7 @@ guestController.get('/:contactId/addresses', async (c) => {
   return c.json({
     status: true,
     statusCode: 200,
-    message: 'Success get all addresses data',
+    message: 'Success get all addresses data (guest)',
     data: result,
   })
 })
