@@ -1,7 +1,12 @@
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
-import { PrismaClient } from '@prisma/client'
+import pkg from '@prisma/client'
 import CONFIG from '../config/environment'
 import { logger } from './logger'
+const { PrismaClient } = pkg
+
+declare global {
+  var prismaClient: InstanceType<typeof PrismaClient>
+}
 
 const adapter = new PrismaMariaDb({
   host: CONFIG.db_host,
@@ -12,19 +17,25 @@ const adapter = new PrismaMariaDb({
   connectionLimit: 3,
 })
 
-const prismaClient = new PrismaClient({
-  adapter,
-  log: [
-    {
-      emit: 'event',
-      level: 'error',
-    },
-    {
-      emit: 'event',
-      level: 'warn',
-    },
-  ],
-})
+let prismaClient
+
+if (!globalThis.prismaClient) {
+  globalThis.prismaClient = new PrismaClient({
+    adapter,
+    log: [
+      {
+        emit: 'event',
+        level: 'error',
+      },
+      {
+        emit: 'event',
+        level: 'warn',
+      },
+    ],
+  })
+}
+
+prismaClient = globalThis.prismaClient
 
 prismaClient.$on('error', (e) => {
   logger.error(e)
