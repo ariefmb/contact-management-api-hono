@@ -1,7 +1,7 @@
 import { HTTPException } from 'hono/http-exception'
-import { ContactAddRequest, ContactResponse, ContactSearchRequest, ContactUpdateRequest } from '../models/contact-model'
-import { ContactRepository } from '../repositories/contact-repository'
-import { logger } from '../utils/logger'
+import { ContactAddRequest, ContactResponse, ContactSearchRequest, ContactUpdateRequest } from '../models/contact-model.js'
+import { ContactRepository } from '../repositories/contact-repository.js'
+import { logger } from '../utils/logger.js'
 
 export class ContactService {
   static add = async (request: ContactAddRequest): Promise<ContactResponse> => {

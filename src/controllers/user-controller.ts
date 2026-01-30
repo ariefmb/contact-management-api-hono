@@ -1,19 +1,19 @@
 import { sValidator } from '@hono/standard-validator'
 import { Hono } from 'hono'
 import { deleteCookie, setCookie } from 'hono/cookie'
-import authMiddleware from '../middleware/auth-middleware'
-import { ApplicationVariables } from '../models/helper-model'
+import authMiddleware from '../middleware/auth-middleware.js'
+import { ApplicationVariables } from '../models/helper-model.js'
 import {
   RefreshSessionRequest,
   UserLoginRequest,
   UserRegisterRequest,
   UserResponse,
   UserUpdateRequest,
-} from '../models/user-model'
-import { UserService } from '../services/user-service'
-import { cookieOpts } from '../utils/cookieOpts'
-import { logger } from '../utils/logger'
-import { UserValidation } from '../validations/user-validation'
+} from '../models/user-model.js'
+import { UserService } from '../services/user-service.js'
+import { cookieOpts } from '../utils/cookieOpts.js'
+import { logger } from '../utils/logger.js'
+import { UserValidation } from '../validations/user-validation.js'
 
 export const userController = new Hono<{ Variables: ApplicationVariables }>().basePath('/users')
 

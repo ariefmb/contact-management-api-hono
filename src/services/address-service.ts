@@ -1,8 +1,8 @@
 import { HTTPException } from 'hono/http-exception'
-import { AddressCreateRequest, AddressResponse } from '../models/address-model'
-import { AddressRepository } from '../repositories/address-repository'
-import { ContactRepository } from '../repositories/contact-repository'
-import { logger } from '../utils/logger'
+import { AddressCreateRequest, AddressResponse } from '../models/address-model.js'
+import { AddressRepository } from '../repositories/address-repository.js'
+import { ContactRepository } from '../repositories/contact-repository.js'
+import { logger } from '../utils/logger.js'
 
 export class AddressService {
   static checkContactExist = async (userId: string, contactId: string) => {

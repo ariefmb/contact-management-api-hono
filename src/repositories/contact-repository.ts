@@ -1,5 +1,5 @@
-import { ContactAddRequest, ContactResponse, ContactUpdateRequest } from '../models/contact-model'
-import prismaClient from '../utils/database'
+import { ContactAddRequest, ContactResponse, ContactUpdateRequest } from '../models/contact-model.js'
+import prismaClient from '../utils/database.js'
 
 export class ContactRepository {
   static create = async (payload: ContactAddRequest): Promise<ContactResponse> => {

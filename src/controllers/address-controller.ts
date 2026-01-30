@@ -1,12 +1,12 @@
 import { sValidator } from '@hono/standard-validator'
 import { Hono } from 'hono'
-import authMiddleware from '../middleware/auth-middleware'
-import { AddressCreateRequest } from '../models/address-model'
-import { ApplicationVariables } from '../models/helper-model'
-import { UserResponse } from '../models/user-model'
-import { AddressService } from '../services/address-service'
-import { logger } from '../utils/logger'
-import { AddressValidation } from '../validations/address-validation'
+import authMiddleware from '../middleware/auth-middleware.js'
+import { AddressCreateRequest } from '../models/address-model.js'
+import { ApplicationVariables } from '../models/helper-model.js'
+import { UserResponse } from '../models/user-model.js'
+import { AddressService } from '../services/address-service.js'
+import { logger } from '../utils/logger.js'
+import { AddressValidation } from '../validations/address-validation.js'
 
 export const addressController = new Hono<{ Variables: ApplicationVariables }>().basePath(
   '/contacts/:contactId/addresses',

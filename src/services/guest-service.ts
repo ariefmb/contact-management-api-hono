@@ -1,6 +1,6 @@
 import { HTTPException } from 'hono/http-exception'
-import { UserRepository } from '../repositories/user-repository'
-import { logger } from '../utils/logger'
+import { UserRepository } from '../repositories/user-repository.js'
+import { logger } from '../utils/logger.js'
 
 export class GuestService {
   static getUserDefault = async (username: string) => {

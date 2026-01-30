@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { logger } from '../utils/logger'
+import { logger } from '../utils/logger.js'
 
 const CONFIG = {
   db_url: Bun.env.DATABASE_URL,

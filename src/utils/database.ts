@@ -1,7 +1,7 @@
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 import { PrismaClient } from '@prisma/client'
-import CONFIG from '../config/environment'
-import { logger } from './logger'
+import CONFIG from '../config/environment.js'
+import { logger } from './logger.js'
 
 const adapter = new PrismaMariaDb({
   host: CONFIG.db_host,

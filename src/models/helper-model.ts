@@ -1,4 +1,4 @@
-import { UserResponse } from './user-model'
+import { UserResponse } from './user-model.js'
 
 export type ApplicationVariables = {
   user: UserResponse

@@ -1,5 +1,5 @@
-import { AddressCreateRequest, AddressResponse } from '../models/address-model'
-import prismaClient from '../utils/database'
+import { AddressCreateRequest, AddressResponse } from '../models/address-model.js'
+import prismaClient from '../utils/database.js'
 
 export class AddressRepository {
   static create = async (payload: AddressCreateRequest): Promise<AddressResponse> => {

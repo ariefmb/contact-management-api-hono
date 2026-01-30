@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
-import { AddressService } from '../services/address-service'
-import { ContactService } from '../services/contact-service'
-import { GuestService } from '../services/guest-service'
-import { logger } from '../utils/logger'
+import { AddressService } from '../services/address-service.js'
+import { ContactService } from '../services/contact-service.js'
+import { GuestService } from '../services/guest-service.js'
+import { logger } from '../utils/logger.js'
 
 export const guestController = new Hono().basePath('/guest/contacts')
 

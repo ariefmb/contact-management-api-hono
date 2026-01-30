@@ -1,12 +1,12 @@
 import { sValidator } from '@hono/standard-validator'
 import { Hono } from 'hono'
-import authMiddleware from '../middleware/auth-middleware'
-import { ContactAddRequest, ContactUpdateRequest } from '../models/contact-model'
-import { ApplicationVariables } from '../models/helper-model'
-import { UserResponse } from '../models/user-model'
-import { ContactService } from '../services/contact-service'
-import { logger } from '../utils/logger'
-import { ContactValidation } from '../validations/contact-validation'
+import authMiddleware from '../middleware/auth-middleware.js'
+import { ContactAddRequest, ContactUpdateRequest } from '../models/contact-model.js'
+import { ApplicationVariables } from '../models/helper-model.js'
+import { UserResponse } from '../models/user-model.js'
+import { ContactService } from '../services/contact-service.js'
+import { logger } from '../utils/logger.js'
+import { ContactValidation } from '../validations/contact-validation.js'
 
 export const contactController = new Hono<{ Variables: ApplicationVariables }>().basePath('/contacts')
 

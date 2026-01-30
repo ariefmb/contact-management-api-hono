@@ -1,16 +1,16 @@
 import { HTTPException } from 'hono/http-exception'
-import { JWTVerifyVariables } from '../models/helper-model'
+import { JWTVerifyVariables } from '../models/helper-model.js'
 import {
   UserLoginRequest,
   UserRegisterRequest,
   UserResponse,
   UserTokenResponse,
   UserUpdateRequest,
-} from '../models/user-model'
-import { UserRepository } from '../repositories/user-repository'
-import { hashing, verifyHashing } from '../utils/hashing'
-import { signJWT, verifyJWT } from '../utils/jwt'
-import { logger } from '../utils/logger'
+} from '../models/user-model.js'
+import { UserRepository } from '../repositories/user-repository.js'
+import { hashing, verifyHashing } from '../utils/hashing.js'
+import { signJWT, verifyJWT } from '../utils/jwt.js'
+import { logger } from '../utils/logger.js'
 
 export class UserService {
   static register = async (request: UserRegisterRequest): Promise<UserResponse> => {

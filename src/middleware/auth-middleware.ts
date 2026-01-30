@@ -1,11 +1,9 @@
-import { HTTPException } from 'hono/http-exception'
-// import { UserInterface } from '../models/user-model'
-// import { ApplicationVariables } from '../models/application-variables'
 import { createMiddleware } from 'hono/factory'
-import { ApplicationVariables, JWTVerifyVariables } from '../models/helper-model'
-import { UserRepository } from '../repositories/user-repository'
-import { verifyJWT } from '../utils/jwt'
-import { logger } from '../utils/logger'
+import { HTTPException } from 'hono/http-exception'
+import { ApplicationVariables, JWTVerifyVariables } from '../models/helper-model.js'
+import { UserRepository } from '../repositories/user-repository.js'
+import { verifyJWT } from '../utils/jwt.js'
+import { logger } from '../utils/logger.js'
 
 const authMiddleware = createMiddleware<{ Variables: ApplicationVariables }>(async (c, next) => {
   const token = c.req.header('Authorization')?.replace(/^Bearer\s/, '')

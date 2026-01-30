@@ -1,5 +1,5 @@
-import { UserInterface, UserRegisterRequest, UserResponse, UserUpdateRequest } from '../models/user-model'
-import prismaClient from '../utils/database'
+import { UserInterface, UserRegisterRequest, UserResponse, UserUpdateRequest } from '../models/user-model.js'
+import prismaClient from '../utils/database.js'
 
 export class UserRepository {
   static register = async (payload: UserRegisterRequest): Promise<UserResponse> => {
