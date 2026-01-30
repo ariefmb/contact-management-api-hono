@@ -2,10 +2,10 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { HTTPException } from 'hono/http-exception'
 import { ZodError } from 'zod'
-import { addressController } from '../controllers/address-controller'
-import { contactController } from '../controllers/contact-controller'
-import { guestController } from '../controllers/guest-controller'
-import { userController } from '../controllers/user-controller'
+import { addressController } from '../controllers/address-controller.js'
+import { contactController } from '../controllers/contact-controller.js'
+import { guestController } from '../controllers/guest-controller.js'
+import { userController } from '../controllers/user-controller.js'
 
 const app = new Hono()
 
