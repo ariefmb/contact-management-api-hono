@@ -3,6 +3,10 @@ import { PrismaClient } from '@prisma/client'
 import CONFIG from '../config/environment.js'
 import { logger } from './logger.js'
 
+declare global {
+  var prismaClient: InstanceType<typeof PrismaClient>
+}
+
 const adapter = new PrismaMariaDb({
   host: CONFIG.db_host,
   port: Number(CONFIG.db_port),
