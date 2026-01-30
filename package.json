@@ -1,7 +1,10 @@
 {
   "name": "learn-hono-restful-api",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/api/index.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "postinstall": "prisma generate"
   },
   "type": "module",
   "dependencies": {
