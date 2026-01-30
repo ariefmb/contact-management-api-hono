@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { HTTPException } from 'hono/http-exception'
 import { ZodError } from 'zod'
+import { addressController } from './controllers/address-controller'
 import { contactController } from './controllers/contact-controller'
 import { userController } from './controllers/user-controller'
 
@@ -12,6 +13,7 @@ app.get('/', (c) => {
 
 app.route('/', userController)
 app.route('/', contactController)
+app.route('/', addressController)
 
 app.onError(async (err, c) => {
   if (err instanceof HTTPException) {
