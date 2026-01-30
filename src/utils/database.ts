@@ -1,13 +1,14 @@
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 import { PrismaClient } from '@prisma/client'
+import CONFIG from '../config/environment'
 import { logger } from './logger'
 
 const adapter = new PrismaMariaDb({
-  host: Bun.env.DATABASE_HOST,
-  port: Number(Bun.env.DATABASE_PORT),
-  user: Bun.env.DATABASE_USER,
-  password: Bun.env.DATABASE_PASSWORD,
-  database: Bun.env.DATABASE_NAME,
+  host: CONFIG.db_host,
+  port: Number(CONFIG.db_port),
+  user: CONFIG.db_user,
+  password: CONFIG.db_pass,
+  database: CONFIG.db_name,
   connectionLimit: 3,
 })
 
