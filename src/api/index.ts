@@ -22,10 +22,10 @@ app.get('/', (c) => {
   return c.text('Contact Management API - created using Bun & Hono!')
 })
 
-app.route('/', userController)
-app.route('/', contactController)
-app.route('/', addressController)
-app.route('/', guestController)
+app.route('/api', userController)
+app.route('/api', contactController)
+app.route('/api', addressController)
+app.route('/api', guestController)
 
 app.onError(async (err, c) => {
   if (err instanceof HTTPException) {
