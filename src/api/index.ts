@@ -33,7 +33,7 @@ app.onError(async (err, c) => {
     return c.json({
       status: false,
       statusCode: err.status,
-      message: err.message,
+      errors: err.message,
     })
   }
 
@@ -42,7 +42,7 @@ app.onError(async (err, c) => {
     return c.json({
       status: false,
       statusCode: 422,
-      message: err.message,
+      errors: err.message,
     })
   }
 
@@ -50,7 +50,7 @@ app.onError(async (err, c) => {
   return c.json({
     status: false,
     statusCode: 500,
-    message: err.message || 'Internal Server Error',
+    errors: err.message || 'Internal Server Error',
   })
 })
 
