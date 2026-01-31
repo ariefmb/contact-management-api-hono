@@ -191,14 +191,6 @@ The application uses three main entities:
 - `bun run prisma:generate` - Generate Prisma client
 - `bun run prisma:push` - Push schema changes to database
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ## 👤 Author
 
 Created by Arief MB
